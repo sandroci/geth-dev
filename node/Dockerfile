@@ -23,8 +23,8 @@ RUN geth account import --password ~/.accountpassword  ~/.privatekey
 ENV address=""
 ENV bootnodeId=""
 ENV bootnodeIp=""
-
-CMD exec geth --shh --bootnodes "enode://$bootnodeId@$bootnodeIp:30301" --networkid "6660001" --verbosity=4 --rpc --rpcaddr "0.0.0.0" --rpcapi "eth,web3,net,admin,debug,db" --rpccorsdomain "*" --syncmode="full"
+ENV rpcport=""
+CMD exec geth --shh --bootnodes "enode://$bootnodeId@$bootnodeIp:30301" --networkid "6660001" --verbosity=4 --rpc --rpcport "$rpcport" --rpcaddr "0.0.0.0" --rpcapi "eth,web3,net,admin,debug,db" --rpccorsdomain "*" --syncmode="full"
 
 ARG port
 EXPOSE $port
