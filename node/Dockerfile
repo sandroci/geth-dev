@@ -24,7 +24,7 @@ ENV address=""
 ENV bootnodeId=""
 ENV bootnodeIp=""
 ENV rpcport=""
-CMD exec geth --shh --bootnodes "enode://$bootnodeId@$bootnodeIp:30301" --networkid "6660001" --verbosity=4 --rpc --rpcport "$rpcport" --rpcaddr "0.0.0.0" --rpcapi "eth,web3,net,admin,debug,db" --rpccorsdomain "*" --syncmode="full"
+CMD exec geth --shh --bootnodes "enode://$bootnodeId@$bootnodeIp:30301" --networkid "6660001" --verbosity=4 --rpc --rpcport "$rpcport" --rpcaddr "0.0.0.0" --rpcapi "eth,web3,shh,net,admin,debug,db" --rpccorsdomain "*" --syncmode="full"
 
 ARG port
 EXPOSE $port
