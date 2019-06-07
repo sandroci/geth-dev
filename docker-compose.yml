@@ -110,6 +110,36 @@ services:
        chainnet:
          ipv4_address: 172.25.0.111
 
+  geth-dev-node-3:
+     hostname: geth-dev-node-3
+     depends_on:
+       - geth-dev-miner-2
+     environment:
+       - address=0x743d321B69BC27Df20AFE34280475f1E9C09C11E
+       - bootnodeId=76a8171707eca17647a47ca99ffd348927dfa60102792ea349a25d5192e61855be83b786e376276a306afcceea4ffd1c9c77e4370b417efc39f328a0d068004c
+       - bootnodeIp=172.25.0.101
+       - rpcport=8547
+     build:
+       context: ./node
+       args:
+         privatekey: 4E1CB840A8470D59E5A2233165C827611716D0BC21DD7E6CE1573103163EF4CB
+         password: word
+         port: 8547
+     container_name: geth-node-3
+     ports:
+       - 8547:8547
+     healthcheck:
+       test: wget http://localhost:8547
+       interval: 2s
+       timeout: 5s
+       retries: 30
+     volumes:
+      - eth-data-5:/root/.ethash
+     networks:
+       chainnet:
+         ipv4_address: 172.25.0.112
+
+
   geth-explorer:
     hostname: geth-explorer
     depends_on:
@@ -135,3 +165,4 @@ volumes:
   eth-data-2:
   eth-data-3:
   eth-data-4:
+  eth-data-5:
